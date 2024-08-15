@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+    db:
+        container_name: app_mysql
+        image: mysql:latest
+       # command: --default-authentication-plugin=mysql_native_password
+        volumes:
+            - "db_app:/var/lib/mysql"
+        environment:
+            MYSQL_ROOT_PASSWORD: "app123"
+            MYSQL_DATABASE: "app"
+            MYSQL_USER: "user"
+            MYSQL_PASSWORD: "app123"
+        ports:
+            - 3333:3306
+        networks:
+            - symfony
+    php:
+        container_name: app_php
+        build:
+            context: .
+            dockerfile: docker/php/Dockerfile
+        volumes:
+            - ./:/var/www/
+        networks:
+            - symfony
+    nginx:
+        container_name: app_nginx
+        build:
+            context: .
+            dockerfile: docker/nginx/Dockerfile
+        volumes:
+            - ./:/var/www/
+        ports:
+            - 99:80
+        networks:
+            - symfony
+volumes:
+    db_app:
+
+networks:
+    symfony:
