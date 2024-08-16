@@ -20,9 +20,6 @@ class App
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $androidLink = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $iosLink = null;
 
     #[ORM\Column(length: 255)]
@@ -59,18 +56,6 @@ class App
     public function setDescription(string $description): static
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getAndroidLink(): ?string
-    {
-        return $this->androidLink;
-    }
-
-    public function setAndroidLink(string $androidLink): static
-    {
-        $this->androidLink = $androidLink;
 
         return $this;
     }

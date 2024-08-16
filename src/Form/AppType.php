@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\App;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,11 +15,15 @@ class AppType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('androidLink')
             ->add('iosLink')
             ->add('windowsLink')
             ->add('playStoreLink')
-            ->add('image')
+            ->add('image', FileType::class, [
+                'label' => 'App Image (JPEG or PNG file)',
+                'mapped' => false,
+                'required' => false,
+                'attr' => ['accept' => 'image/jpeg,image/png'],
+            ])
         ;
     }
 

@@ -105,10 +105,12 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
         .product-card img {
-            width: 100%;
+            width: 200px;
             height: 200px;
             object-fit: cover;
             transition: opacity 0.3s ease;
+            display: block;
+            margin: 0 auto; /* Resmi yatayda ortalar */
         }
         .product-card:hover img {
             opacity: 0.8;
@@ -137,7 +139,11 @@
 </head>
 <body>
 <div class="navbar">
-    <div class="logo">Logo</div>
+    <div class="logo">
+        <img src="/uploads/images/LOGO1.png" alt="Logo" style="width: 150px; height: auto;">
+    </div>
+
+
     <div class="nav-links">
         <a href="#">About Us</a>
         <a href="#">Contact Us</a>
@@ -171,20 +177,18 @@
 </div>
 
 <div class="product-cards">
-    {% if homes is defined %}
-        {% for home in homes %}
-            <div class="product-card">
-                <img src="{{ asset('uploads/images/' ~ home.image) }}" alt="Product Image">
-                <div class="content">
-                    <h3>{{ home.title }}</h3>
-                    <p>{{ home.description }}</p>
-                </div>
+    {% for app in apps %}
+        <div class="product-card">
+            <img src="{{ asset('uploads/images/' ~ app.image) }}" alt="{{ app.name }}" class="product-image">
+            <div class="content">
+                <h3>{{ app.name }}</h3>
+                <p class="description">{{ app.description }}</p>
+                <a href="{{ path('app_app_show', {'id': app.id}) }}" class="btn btn-primary">Details</a>
             </div>
-        {% endfor %}
-    {% else %}
-        <p>No homes found.</p>
-    {% endif %}
+        </div>
+    {% endfor %}
 </div>
+
 
 <div class="footer">
     <p>&copy; 2024 Your Company Name. All rights reserved.</p>
