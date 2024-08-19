@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-#[Route('/app')]
+#[Route('/admin/app')]
 class AppController extends AbstractController
 {
     #[Route('/', name: 'app_app_index', methods: ['GET'])]

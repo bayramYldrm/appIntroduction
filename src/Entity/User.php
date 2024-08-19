@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -62,5 +64,28 @@ class User
         $this->password = $password;
 
         return $this;
+    }
+
+    public function getRoles(): array
+    {
+        // Default role or roles assigned to the user. Customize as needed.
+        return ['ROLE_USER'];
+    }
+
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->email; // Assuming email is used as the unique identifier
+    }
+
+    // PasswordAuthenticatedUserInterface method
+    public function getSalt(): ?string
+    {
+        // Not needed when using bcrypt or argon2i
+        return null;
     }
 }

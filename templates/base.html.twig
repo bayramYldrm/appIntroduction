@@ -97,6 +97,14 @@
             font-size: 1.1rem;
         }
 
+        .sidebar .user-section {
+            margin-top: 30px;
+        }
+
+        .sidebar .user-section h4 {
+            font-size: 1.1rem;
+        }
+
         .sidebar-toggle {
             position: fixed;
             top: 15px;
@@ -112,9 +120,9 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="sidebar-toggle">
-    <div class="logo">
-        <img src="/uploads/images/LOGO1.png" alt="Logo" style="width: 150px; height: 50px;">
-    </div>
+        <div class="logo">
+            <img src="/uploads/images/LOGO1.png" alt="Logo" style="width: 150px; height: 50px;">
+        </div>
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -134,20 +142,16 @@
                     <a class="dropdown-item" href="#">Profilim</a>
                     <a class="dropdown-item" href="#">Ayarlar</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Çıkış Yap</a>
+                    <a class="dropdown-item" href="{{ path('logout') }}">Çıkış Yap</a>
                 </div>
             </li>
         </ul>
     </div>
 </nav>
 
-<!-- Sidebar Toggle Button -->
-
-
 <!-- Sidebar -->
 <div class="sidebar">
     <h4>Menü</h4>
-
     <!-- Home Section -->
     <div class="home-section">
         <h4><i class="bi bi-house-door"></i> Home İşlemleri</h4>

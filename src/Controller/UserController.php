@@ -9,11 +9,19 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/user')]
+#[Route('/admin/user')]
 class UserController extends AbstractController
 {
+    private UserPasswordHasherInterface $passwordHasher;
+
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->passwordHasher = $passwordHasher;
+    }
+
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
@@ -30,6 +38,10 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Hash the password before saving the user
+            $hashedPassword = $this->passwordHasher->hashPassword($user, $user->getPassword());
+            $user->setPassword($hashedPassword);
+
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -38,7 +50,7 @@ class UserController extends AbstractController
 
         return $this->render('user/new.html.twig', [
             'user' => $user,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -64,14 +76,15 @@ class UserController extends AbstractController
 
         return $this->render('user/edit.html.twig', [
             'user' => $user,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->getPayload()->getString('_token'))) {
+        // Validate CSRF token
+        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
             $entityManager->remove($user);
             $entityManager->flush();
         }
