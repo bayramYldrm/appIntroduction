@@ -212,8 +212,8 @@
         <img src="/uploads/images/LOGO1.png" alt="Logo" style="width: 150px; height: auto;">
     </div>
     <div class="nav-links">
-        <a href="#">About Us</a>
-        <a href="#">Contact Us</a>
+        <a href="#">Hakkımızda</a>
+        <a href="#">İletişim</a>
     </div>
 </div>
 
@@ -260,8 +260,8 @@
                 <img src="{{ asset('uploads/images/' ~ app.image) }}" alt="{{ app.name }}" class="product-image">
                 <div class="content">
                     <h3>{{ app.name }}</h3>
-                    <p class="description">{{ app.description }}</p>
-                    <a href="{{ path('app_app_show', {'id': app.id}) }}" class="btn btn-primary">View Details</a>
+                    <p class="description">{{ app.description|slice(0, 80) }}{% if app.description|length > 80 %}...{% endif %}</p>
+                    <a href="{{ path('app_app_show', {'id': app.id}) }}" class="btn btn-primary">Detaylar</a>
                 </div>
             </div>
         {% endfor %}
@@ -269,8 +269,9 @@
     <button class="scroll-button scroll-right" onclick="scrollRight()">&#8250;</button>
 </div>
 
+
 <div class="footer">
-    <p>&copy; 2024 Company Name. All rights reserved.</p>
+    <p>&copy; "2024 Yıldırım Uygulama Merkezi. Tüm hakları saklıdır.</p>
 </div>
 
 <script>
