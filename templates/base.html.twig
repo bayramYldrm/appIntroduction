@@ -129,23 +129,23 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Anasayfa</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Kullanıcı İşlemleri
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
-                    <a class="dropdown-item" href="#">Profilim</a>
-                    <a class="dropdown-item" href="#">Ayarlar</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ path('logout') }}">Çıkış Yap</a>
-                </div>
-            </li>
-        </ul>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> Hoşgeldin </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Kullanıcı İşlemleri
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu" style="background-color: #004d40;">
+                        <a class="dropdown-item" href="{{ path('logout') }}">Çıkış Yap</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 
@@ -154,9 +154,9 @@
     <h4>Menü</h4>
     <!-- Home Section -->
     <div class="home-section">
-        <h4><i class="bi bi-house-door"></i> Home İşlemleri</h4>
-        <a href="{{ path('app_home_index') }}"><i class="bi bi-list"></i> Tüm Home Kayıtları</a>
-        <a href="{{ path('app_home_new') }}"><i class="bi bi-plus-circle"></i> Yeni Home Ekle</a>
+        <h4><i class="bi bi-house-door"></i> Ana Sayfa İşlemleri</h4>
+        <a href="{{ path('app_home_index') }}"><i class="bi bi-list"></i> Tüm Ana Sayfa Kayıtları</a>
+        <a href="{{ path('app_home_new') }}"><i class="bi bi-plus-circle"></i> Yeni Ana Sayfa Ekle</a>
     </div>
     <br>
     <!-- App Section -->
@@ -168,9 +168,9 @@
     <br>
     <!-- User Section -->
     <div class="user-section">
-        <h4><i class="bi bi-person"></i> User İşlemleri</h4>
-        <a href="{{ path('app_user_index') }}"><i class="bi bi-list"></i> Tüm User Kayıtları</a>
-        <a href="{{ path('app_user_new') }}"><i class="bi bi-plus-circle"></i> Yeni User Ekle</a>
+        <h4><i class="bi bi-person"></i> Kullanıcı İşlemleri</h4>
+        <a href="{{ path('app_user_index') }}"><i class="bi bi-list"></i> Tüm Kullanıcı Kayıtları</a>
+        <a href="{{ path('app_user_new') }}"><i class="bi bi-plus-circle"></i> Yeni Kullanıcı Ekle</a>
     </div>
 </div>
 

@@ -1,11 +1,68 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New App{% endblock %}
+{% block title %}Yeni Uygulama Oluştur{% endblock %}
 
 {% block body %}
-    <h1>Create new App</h1>
+    <div class="container mt-4">
+        <h1 class="mb-4">Yeni Uygulama Oluştur</h1>
 
-    {{ include('app/_form.html.twig') }}
+        <!-- Formu dahil et -->
+        <div class="mb-4">
+            {{ include('app/_form.html.twig') }}
+        </div>
 
-    <a href="{{ path('app_app_index') }}">back to list</a>
+        <!-- Geri dönme linki -->
+        <a href="{{ path('app_app_index') }}" class="btn btn-secondary mt-3">
+            <i class="bi bi-arrow-left"></i> Listeye Geri Dön
+        </a>
+    </div>
+
+    <style>
+        /* Genel Stil */
+        body {
+            background-color: #f8f9fa; /* Hafif gri arka plan */
+            color: #212529; /* Koyu metin rengi */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern yazı tipi */
+        }
+
+        .container {
+            max-width: 600px; /* Konteyner genişliği */
+            background-color: white; /* Beyaz arka plan */
+            padding: 2rem; /* İç boşluk */
+            border-radius: 0.5rem; /* Köşe yuvarlama */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+            margin-left: auto; /* Sağda fazla boşluk bırak */
+            margin-right: auto; /* Solda fazla boşluk bırak */
+            margin-left: 10%; /* Hafif sola hizala */
+        }
+
+        h1 {
+            font-size: 1.75rem; /* Başlık boyutu */
+            font-weight: bold; /* Kalın yazı */
+            margin-bottom: 1.5rem; /* Alt boşluk */
+            color: #343a40; /* Başlık rengi */
+        }
+
+        .btn {
+            border-radius: 0.25rem; /* Buton kenar köşe yuvarlama */
+            padding: 0.5rem 1rem; /* Buton iç boşluk */
+            font-size: 1rem; /* Buton yazı boyutu */
+            transition: background-color 0.3s, border-color 0.3s; /* Geçiş efektleri */
+        }
+
+        .btn-secondary {
+            background-color: #6c757d; /* Gri buton rengi */
+            border-color: #6c757d; /* Gri kenar rengi */
+            color: white; /* Beyaz yazı rengi */
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Hover durumunda koyu gri */
+            border-color: #545b62; /* Hover kenar rengi */
+        }
+
+        .mb-4 {
+            margin-bottom: 1.5rem; /* Alt boşluk */
+        }
+    </style>
 {% endblock %}

@@ -1,13 +1,105 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit User{% endblock %}
+{% block title %}Kullanıcıyı Düzenle{% endblock %}
 
 {% block body %}
-    <h1>Edit User</h1>
+    <div class="container mt-4" style="max-width: 800px; margin-left: 0;">
+        <h1 class="mb-4">Kullanıcıyı Düzenle</h1>
 
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+        <!-- Formu Dahil Et -->
+        <div class="card mb-4">
+            <div class="card-body">
+                {{ include('user/_form.html.twig', {'button_label': 'Güncelle'}) }}
+            </div>
+        </div>
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
+        <!-- Geri Dönme Bağlantısı -->
+        <a href="{{ path('app_user_index') }}" class="btn btn-secondary mt-3">
+            <i class="bi bi-arrow-left"></i> Listeye Geri Dön
+        </a>
 
-    {{ include('user/_delete_form.html.twig') }}
+        <!-- Silme Formu -->
+        {{ include('user/_delete_form.html.twig') }}
+    </div>
+
+    <style>
+        /* Sayfa Genel Stili */
+        body {
+            background-color: #f8f9fa; /* Hafif gri arka plan */
+            color: #333; /* Varsayılan metin rengi */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern yazı tipi */
+        }
+
+        .container {
+            background: white; /* Beyaz arka plan */
+            border-radius: 8px; /* Köşe yuvarlama */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Hafif gölge */
+            padding: 2rem; /* İç boşluk */
+        }
+
+        h1 {
+            color: black; /* Mavi başlık rengi */
+        }
+
+        .card {
+            border: none; /* Kart kenarlığını kaldır */
+            border-radius: 8px; /* Kart köşelerini yuvarla */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Hafif kart gölgesi */
+        }
+
+        .card-body {
+            padding: 1.5rem; /* Kart iç boşluk */
+        }
+
+        .btn {
+            border-radius: 0.25rem; /* Buton köşe yuvarlama */
+            padding: 0.5rem 1rem; /* Buton iç boşluk */
+            font-size: 1rem; /* Buton yazı boyutu */
+            transition: background-color 0.3s, border-color 0.3s; /* Geçiş efektleri */
+        }
+
+        .btn-secondary {
+            background-color: #6c757d; /* Gri buton rengi */
+            border-color: #6c757d; /* Gri kenar rengi */
+            color: white; /* Beyaz yazı rengi */
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Hover durumunda koyu gri */
+            border-color: #545b62; /* Hover kenar rengi */
+        }
+
+        .btn i {
+            margin-right: 0.5rem; /* İkon ve metin arasında boşluk */
+        }
+
+        .custom-btn {
+            background-color: #007bff; /* Mavi renk */
+            color: white; /* Yazı rengi beyaz */
+            border: none; /* Kenarlık yok */
+            padding: 5px 10px; /* İç boşluk */
+            border-radius: 5px; /* Köşe yuvarlatma */
+            cursor: pointer; /* İmleç el şekli */
+        }
+
+        .custom-btn:hover {
+            background-color: #0056b3; /* Hover durumunda koyu mavi */
+        }
+
+        .custom-delete-btn {
+            background-color: #dc3545; /* Kırmızı renk */
+            color: white; /* Yazı rengi beyaz */
+            border: none; /* Kenarlık yok */
+            padding: 5px 10px; /* İç boşluk */
+            border-radius: 5px; /* Köşe yuvarlatma */
+            cursor: pointer; /* İmleç el şekli */
+            font-size: 16px; /* Yazı boyutu */
+        }
+
+        .custom-delete-btn:hover {
+            background-color: #c82333; /* Hover durumunda daha koyu kırmızı */
+        }
+
+
+    </style>
 {% endblock %}

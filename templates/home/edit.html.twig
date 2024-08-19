@@ -1,13 +1,100 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Home{% endblock %}
+{% block title %}Düzenle{% endblock %}
 
 {% block body %}
-    <h1>Edit Home</h1>
+    <div class="container mt-4">
+        <h1 class="mb-4">Düzenle</h1>
 
-    {{ include('home/_form.html.twig', {'button_label': 'Update'}) }}
+        <!-- Formu dahil et -->
+        <div class="mb-4 bg-white rounded shadow-sm p-4">
+            {{ include('home/_form.html.twig', {'button_label': 'Güncelle'}) }}
+        </div>
 
-    <a href="{{ path('app_home_index') }}">back to list</a>
+        <!-- Butonları hizalama -->
+        <div class="d-flex justify-content-between mt-4">
+            <!-- Geri dönme linki -->
+            <a href="{{ path('app_home_index') }}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Listeye Geri Dön
+            </a>
 
-    {{ include('home/_delete_form.html.twig') }}
+            <!-- Silme formu -->
+            {{ include('home/_delete_form.html.twig') }}
+        </div>
+    </div>
+
+    <style>
+        /* Genel Stil */
+        body {
+            background-color: #f4f7f8; /* Hafif gri arka plan */
+            color: #333; /* Koyu metin rengi */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern yazı tipi */
+        }
+
+        .container {
+            background: white; /* Beyaz arka plan */
+            border-radius: 8px; /* Köşe yuvarlama */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Hafif gölge */
+            padding: 2rem; /* İç boşluk */
+        }
+
+        h1 {
+            color: black; /* Mavi başlık rengi */
+        }
+
+        .btn {
+            border-radius: 0.5rem; /* Buton köşe yuvarlama */
+            padding: 0.5rem 1rem; /* Buton iç boşluk */
+            font-size: 1rem; /* Buton yazı boyutu */
+            transition: background-color 0.3s, border-color 0.3s; /* Geçiş efektleri */
+        }
+
+        .btn-secondary {
+            background-color: #6c757d; /* Gri buton rengi */
+            border-color: #6c757d; /* Gri kenar rengi */
+            color: white; /* Beyaz yazı rengi */
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Hover durumunda koyu gri */
+            border-color: #545b62; /* Hover kenar rengi */
+        }
+
+        .btn-danger {
+            background-color: #dc3545; /* Kırmızı buton rengi */
+            border-color: #dc3545; /* Kırmızı kenar rengi */
+            color: white; /* Beyaz yazı rengi */
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333; /* Hover durumunda koyu kırmızı */
+            border-color: #bd2130; /* Hover kenar rengi */
+        }
+
+        .btn-sm {
+            font-size: 0.875rem; /* Küçük buton font boyutu */
+            padding: 0.25rem 0.5rem; /* Buton padding */
+        }
+
+        /* İkon ile metin arasına boşluk ekleme */
+        .btn i {
+            margin-right: 0.5rem; /* İkon ve metin arasında boşluk */
+        }
+
+        .bg-white {
+            background-color: white; /* Beyaz arka plan */
+        }
+
+        .rounded {
+            border-radius: 0.5rem; /* Köşe yuvarlama */
+        }
+
+        .shadow-sm {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Hafif gölge */
+        }
+
+        .p-4 {
+            padding: 1.5rem; /* İç boşluk */
+        }
+    </style>
 {% endblock %}

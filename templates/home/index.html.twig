@@ -1,41 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home index{% endblock %}
+{% block title %}Ana Sayfa{% endblock %}
 
 {% block body %}
-    <h1>Home index</h1>
+    <div class="container mt-4">
+        <h1 class="mb-4">Ana Sayfa</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Image</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Link</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for home in homes %}
-            <tr>
-                <td>{{ home.id }}</td>
-                <td>{{ home.image }}</td>
-                <td>{{ home.title }}</td>
-                <td>{{ home.description }}</td>
-                <td>{{ home.link }}</td>
-                <td>
-                    <a href="{{ path('app_home_show', {'id': home.id}) }}">show</a>
-                    <a href="{{ path('app_home_edit', {'id': home.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <style>
+            .table thead th {
+                background-color: #00695c;
+                color: white;
+                text-align: center;
+            }
+        </style>
 
-    <a href="{{ path('app_home_new') }}">Create new</a>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Resim</th>
+                    <th scope="col">Başlık</th>
+                    <th scope="col">Açıklama</th>
+                    <th scope="col">Link</th>
+                    <th scope="col">Aksiyonlar</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for home in homes %}
+                    <tr>
+                        <td>{{ home.id }}</td>
+                        <td><img src="{{ home.image }}" class="img-thumbnail" style="max-width: 100px;"></td>
+                        <td>{{ home.title }}</td>
+                        <td>{{ home.description }}</td>
+                        <td><a href="{{ home.link }}" target="_blank">{{ home.link }}</a></td>
+                        <td>
+                            <a href="{{ path('app_home_show', {'id': home.id}) }}" class="btn btn-info btn-sm">
+                                <i class="bi bi-eye"></i> Göster
+                            </a>
+                            <a href="{{ path('app_home_edit', {'id': home.id}) }}" class="btn btn-warning btn-sm">
+                                <i class="bi bi-pencil"></i> Düzenle
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center">Kayıt Bulunamadı</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <a href="{{ path('app_home_new') }}" class="btn btn-primary mt-4">
+            <i class="bi bi-plus"></i> Create New
+        </a>
+    </div>
 {% endblock %}

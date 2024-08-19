@@ -1,38 +1,116 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Ev Ayrıntıları{% endblock %}
 
 {% block body %}
-    <h1>Home</h1>
+    <div class="container mt-4">
+        <h1 class="mb-4">Ayrıntılar</h1>
+        <div class="card shadow-sm rounded">
+            <div class="card-body">
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ home.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Resim</th>
+                        <td><img src="{{ home.image }}" class="img-fluid" style="max-width: 200px;"></td>
+                    </tr>
+                    <tr>
+                        <th>Başlık</th>
+                        <td>{{ home.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>Açıklama</th>
+                        <td>{{ home.description }}</td>
+                    </tr>
+                    <tr>
+                        <th>Link</th>
+                        <td><a href="{{ home.link }}" target="_blank">{{ home.link }}</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-between mt-3">
+                    <a href="{{ path('app_home_index') }}" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Listeye Geri Dön
+                    </a>
+                    <a href="{{ path('app_home_edit', {'id': home.id}) }}" class="btn btn-warning">
+                        <i class="bi bi-pencil"></i> Düzenle
+                    </a>
+                </div>
+            </div>
+            <div class="card-footer">
+                {{ include('home/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ home.id }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ home.image }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ home.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ home.description }}</td>
-            </tr>
-            <tr>
-                <th>Link</th>
-                <td>{{ home.link }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <style>
+        /* Genel Stil */
+        body {
+            background-color: #f8f9fa; /* Hafif gri arka plan */
+            color: #212529; /* Koyu metin rengi */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern yazı tipi */
+        }
 
-    <a href="{{ path('app_home_index') }}">back to list</a>
+        .card {
+            border-radius: 0.5rem; /* Köşe yuvarlama */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Hafif gölge */
+        }
 
-    <a href="{{ path('app_home_edit', {'id': home.id}) }}">edit</a>
+        .card-body {
+            background-color: white; /* Beyaz arka plan */
+            border-radius: 0.5rem; /* Köşe yuvarlama */
+            padding: 1.5rem; /* İç boşluk */
+        }
 
-    {{ include('home/_delete_form.html.twig') }}
+        .card-footer {
+            background-color: white; /* Beyaz arka plan */
+            border-top: 1px solid #dee2e6; /* Üst kenar çizgisi */
+            padding: 1rem; /* İç boşluk */
+        }
+
+        .table {
+            margin-bottom: 0; /* Tablo alt boşluğunu kaldır */
+        }
+
+        .table th, .table td {
+            vertical-align: middle; /* Hücre içeriğini ortala */
+        }
+
+        .btn {
+            border-radius: 0.5rem; /* Buton köşe yuvarlama */
+            padding: 0.5rem 1rem; /* Buton iç boşluk */
+            font-size: 1rem; /* Buton yazı boyutu */
+            transition: background-color 0.3s, border-color 0.3s; /* Geçiş efektleri */
+        }
+
+        .btn-secondary {
+            background-color: #6c757d; /* Gri buton rengi */
+            border-color: #6c757d; /* Gri kenar rengi */
+            color: white; /* Beyaz yazı rengi */
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Hover durumunda koyu gri */
+            border-color: #545b62; /* Hover kenar rengi */
+        }
+
+        .btn-warning {
+            background-color: #ffc107; /* Sarı buton rengi */
+            border-color: #ffc107; /* Sarı kenar rengi */
+            color: black; /* Siyah yazı rengi */
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800; /* Hover durumunda koyu sarı */
+            border-color: #d39e00; /* Hover kenar rengi */
+        }
+
+        .img-fluid {
+            max-width: 100%; /* Resmin genişliği %100 */
+            height: auto; /* Yükseklik otomatik */
+        }
+    </style>
 {% endblock %}

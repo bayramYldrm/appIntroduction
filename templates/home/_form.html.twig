@@ -1,4 +1,27 @@
-{{ form_start(form) }}
+{{ form_start(form, {'attr': {'class': 'form-group'}}) }}
+<div class="mb-3">
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+</div>
+<button type="submit" class="btn btn-primary">
+    <i class="bi bi-save"></i> {{ button_label|default('Kaydet') }}
+</button>
 {{ form_end(form) }}
+
+<style>
+
+    .btn-primary {
+        background-color: #007bff; /* Mavi renk */
+        border-color: #007bff; /* Kenar rengi */
+        color: white; /* Yazı rengi */
+        border-radius: 0.25rem; /* Buton kenar köşe yuvarlama */
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3; /* Hover durumunda koyu mavi */
+        border-color: #004085; /* Hover kenar rengi */
+    }
+
+    .btn i {
+        margin-right: 0.5rem; /* İkon ve metin arasında boşluk */
+    }
+</style>

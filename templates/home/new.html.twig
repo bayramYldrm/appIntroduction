@@ -1,11 +1,84 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Home{% endblock %}
+{% block title %}Yeni Ev Oluştur{% endblock %}
 
 {% block body %}
-    <h1>Create new Home</h1>
+    <div class="container mt-4">
+        <h1 class="mb-4">Yeni Ana Sayfa Oluştur</h1>
 
-    {{ include('home/_form.html.twig') }}
+        <!-- Formu dahil et -->
+        <div class="bg-white rounded shadow-sm p-4 mb-4">
+            {{ include('home/_form.html.twig') }}
+        </div>
 
-    <a href="{{ path('app_home_index') }}">back to list</a>
+        <!-- Geri dönme linki -->
+        <a href="{{ path('app_home_index') }}" class="btn btn-secondary mt-3">
+            <i class="bi bi-arrow-left"></i> Listeye Geri Dön
+        </a>
+    </div>
+
+    <style>
+        /* Genel Stil */
+        body {
+            background-color: #f8f9fa; /* Hafif gri arka plan */
+            color: #212529; /* Koyu metin rengi */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern yazı tipi */
+        }
+
+        .container {
+            background: white; /* Beyaz arka plan */
+            border-radius: 0.5rem; /* Köşe yuvarlama */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Hafif gölge */
+            padding: 2rem; /* İç boşluk */
+        }
+
+        h1 {
+            color: black; /* Mavi başlık rengi */
+        }
+
+        .btn {
+            border-radius: 0.5rem; /* Buton köşe yuvarlama */
+            padding: 0.5rem 1rem; /* Buton iç boşluk */
+            font-size: 1rem; /* Buton yazı boyutu */
+            transition: background-color 0.3s, border-color 0.3s; /* Geçiş efektleri */
+        }
+
+        .btn-secondary {
+            background-color: #6c757d; /* Gri buton rengi */
+            border-color: #6c757d; /* Gri kenar rengi */
+            color: white; /* Beyaz yazı rengi */
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Hover durumunda koyu gri */
+            border-color: #545b62; /* Hover kenar rengi */
+        }
+
+        /* Form alanlarına stil */
+        .form-group {
+            max-width: 600px; /* Formun genişliğini sınırla */
+            margin-bottom: 1rem; /* Form elemanları arasına boşluk */
+        }
+
+        /* Başlık ve form arasına boşluk ekle */
+        .mb-4 {
+            margin-bottom: 1.5rem; /* Alt boşluk */
+        }
+
+        .bg-white {
+            background-color: white; /* Beyaz arka plan */
+        }
+
+        .rounded {
+            border-radius: 0.5rem; /* Köşe yuvarlama */
+        }
+
+        .shadow-sm {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Hafif gölge */
+        }
+
+        .p-4 {
+            padding: 1.5rem; /* İç boşluk */
+        }
+    </style>
 {% endblock %}

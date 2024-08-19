@@ -1,50 +1,110 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}App{% endblock %}
+{% block title %}Uygulama{% endblock %}
 
 {% block body %}
-    <h1>App</h1>
+    <div class="container mt-4">
+        <h1 class="mb-4">Uygulama Detayları</h1>
 
-    <table class="table">
-        <tbody>
+        <!-- Detay Tablosu -->
+        <table class="table table-bordered table-striped">
+            <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ app.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
+                <th>İsim</th>
                 <td>{{ app.name }}</td>
             </tr>
             <tr>
-                <th>Description</th>
+                <th>Açıklama</th>
                 <td>{{ app.description }}</td>
             </tr>
             <tr>
-                <th>AndroidLink</th>
-                <td>{{ app.androidLink }}</td>
+                <th>Android Linki</th>
+                <td><a href="{{ app.androidLink }}" target="_blank">{{ app.androidLink }}</a></td>
             </tr>
             <tr>
-                <th>IosLink</th>
-                <td>{{ app.iosLink }}</td>
+                <th>iOS Linki</th>
+                <td><a href="{{ app.iosLink }}" target="_blank">{{ app.iosLink }}</a></td>
             </tr>
             <tr>
-                <th>WindowsLink</th>
-                <td>{{ app.windowsLink }}</td>
+                <th>Windows Linki</th>
+                <td><a href="{{ app.windowsLink }}" target="_blank">{{ app.windowsLink }}</a></td>
             </tr>
             <tr>
-                <th>PlayStoreLink</th>
-                <td>{{ app.playStoreLink }}</td>
+                <th>Play Store Linki</th>
+                <td><a href="{{ app.playStoreLink }}" target="_blank">{{ app.playStoreLink }}</a></td>
             </tr>
             <tr>
-                <th>Image</th>
-                <td>{{ app.image }}</td>
+                <th>Resim</th>
+                <td><img src="{{ app.image }}" class="img-thumbnail" alt="{{ app.name }}"></td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_app_index') }}">back to list</a>
+        <!-- Geri Dönme ve Düzenleme Bağlantıları -->
+        <a href="{{ path('app_app_index') }}" class="btn btn-secondary mt-3">
+            <i class="bi bi-arrow-left"></i> Listeye Geri Dön
+        </a>
 
-    <a href="{{ path('app_app_edit', {'id': app.id}) }}">edit</a>
+        <a href="{{ path('app_app_edit', {'id': app.id}) }}" class="btn btn-warning mt-3">
+            <i class="bi bi-pencil"></i> Düzenle
+        </a>
 
-    {{ include('app/_delete_form.html.twig') }}
+        <!-- Silme Formu -->
+        {{ include('app/_delete_form.html.twig') }}
+    </div>
+
+    <style>
+        .table th {
+            background-color: #004d40;
+            color: white;
+            text-align: center;
+        }
+
+        .table tbody tr:hover {
+            background-color: #e0f2f1;
+        }
+
+        .btn {
+            border-radius: 0.25rem; /* Buton kenar köşe yuvarlama */
+        }
+
+        .btn-secondary {
+            background-color: #6c757d; /* Gri renk */
+            border-color: #6c757d; /* Kenar rengi */
+            color: white; /* Yazı rengi */
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Hover durumunda koyu gri */
+            border-color: #545b62; /* Hover kenar rengi */
+        }
+
+        .btn-warning {
+            background-color: #ffc107; /* Sarı renk */
+            border-color: #ffc107; /* Kenar rengi */
+            color: black; /* Yazı rengi */
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800; /* Hover durumunda koyu sarı */
+            border-color: #d39e00; /* Hover kenar rengi */
+        }
+
+        .btn-sm {
+            font-size: 0.875rem; /* Küçük buton font boyutu */
+            padding: 0.25rem 0.5rem; /* Buton padding */
+        }
+
+        .btn i {
+            margin-right: 0.5rem; /* İkon ve metin arasında boşluk */
+        }
+
+        .img-thumbnail {
+            max-width: 150px; /* Resim genişliğini ayarlama */
+        }
+    </style>
 {% endblock %}
