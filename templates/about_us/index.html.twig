@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AboutUs index{% endblock %}
+
+{% block body %}
+    <h1>AboutUs index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>MainTitle</th>
+                <th>MainDescription</th>
+                <th>SideTitle</th>
+                <th>SideDescription</th>
+                <th>Vision</th>
+                <th>Mission</th>
+                <th>Founders</th>
+                <th>History</th>
+                <th>FacebookLink</th>
+                <th>TwitterLink</th>
+                <th>Linkedin</th>
+                <th>Team</th>
+                <th>Services</th>
+                <th>Logo</th>
+                <th>AdImage1</th>
+                <th>AdImage2</th>
+                <th>AdImage3</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Adres</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for about_u in aboutuses %}
+            <tr>
+                <td>{{ about_u.id }}</td>
+                <td>{{ about_u.mainTitle }}</td>
+                <td>{{ about_u.mainDescription }}</td>
+                <td>{{ about_u.sideTitle }}</td>
+                <td>{{ about_u.sideDescription }}</td>
+                <td>{{ about_u.vision }}</td>
+                <td>{{ about_u.mission }}</td>
+                <td>{{ about_u.founders }}</td>
+                <td>{{ about_u.history }}</td>
+                <td>{{ about_u.facebookLink }}</td>
+                <td>{{ about_u.twitterLink }}</td>
+                <td>{{ about_u.linkedin }}</td>
+                <td>{{ about_u.team }}</td>
+                <td>{{ about_u.services }}</td>
+                <td>{{ about_u.logo }}</td>
+                <td>{{ about_u.adImage1 }}</td>
+                <td>{{ about_u.adImage2 }}</td>
+                <td>{{ about_u.adImage3 }}</td>
+                <td>{{ about_u.phone }}</td>
+                <td>{{ about_u.email }}</td>
+                <td>{{ about_u.adres }}</td>
+                <td>
+                    <a href="{{ path('app_about_us_show', {'id': about_u.id}) }}">show</a>
+                    <a href="{{ path('app_about_us_edit', {'id': about_u.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="22">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_about_us_new') }}">Create new</a>
+{% endblock %}

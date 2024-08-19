@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AboutUs{% endblock %}
+
+{% block body %}
+    <h1>AboutUs</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ about_u.id }}</td>
+            </tr>
+            <tr>
+                <th>MainTitle</th>
+                <td>{{ about_u.mainTitle }}</td>
+            </tr>
+            <tr>
+                <th>MainDescription</th>
+                <td>{{ about_u.mainDescription }}</td>
+            </tr>
+            <tr>
+                <th>SideTitle</th>
+                <td>{{ about_u.sideTitle }}</td>
+            </tr>
+            <tr>
+                <th>SideDescription</th>
+                <td>{{ about_u.sideDescription }}</td>
+            </tr>
+            <tr>
+                <th>Vision</th>
+                <td>{{ about_u.vision }}</td>
+            </tr>
+            <tr>
+                <th>Mission</th>
+                <td>{{ about_u.mission }}</td>
+            </tr>
+            <tr>
+                <th>Founders</th>
+                <td>{{ about_u.founders }}</td>
+            </tr>
+            <tr>
+                <th>History</th>
+                <td>{{ about_u.history }}</td>
+            </tr>
+            <tr>
+                <th>FacebookLink</th>
+                <td>{{ about_u.facebookLink }}</td>
+            </tr>
+            <tr>
+                <th>TwitterLink</th>
+                <td>{{ about_u.twitterLink }}</td>
+            </tr>
+            <tr>
+                <th>Linkedin</th>
+                <td>{{ about_u.linkedin }}</td>
+            </tr>
+            <tr>
+                <th>Team</th>
+                <td>{{ about_u.team }}</td>
+            </tr>
+            <tr>
+                <th>Services</th>
+                <td>{{ about_u.services }}</td>
+            </tr>
+            <tr>
+                <th>Logo</th>
+                <td>{{ about_u.logo }}</td>
+            </tr>
+            <tr>
+                <th>AdImage1</th>
+                <td>{{ about_u.adImage1 }}</td>
+            </tr>
+            <tr>
+                <th>AdImage2</th>
+                <td>{{ about_u.adImage2 }}</td>
+            </tr>
+            <tr>
+                <th>AdImage3</th>
+                <td>{{ about_u.adImage3 }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ about_u.phone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ about_u.email }}</td>
+            </tr>
+            <tr>
+                <th>Adres</th>
+                <td>{{ about_u.adres }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_about_us_index') }}">back to list</a>
+
+    <a href="{{ path('app_about_us_edit', {'id': about_u.id}) }}">edit</a>
+
+    {{ include('about_us/_delete_form.html.twig') }}
+{% endblock %}
