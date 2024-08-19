@@ -43,7 +43,7 @@
         .carousel {
             position: relative;
             width: 100%;
-            height: 600px; /* İstediğiniz yüksekliği buraya ayarlayın */
+            height: 600px;
             overflow: hidden;
         }
 
@@ -58,23 +58,22 @@
         .carousel-item img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Resmin carouselin tamamını kaplamasını sağlar */
-            object-position: center; /* Resmi ortalar */
+            object-fit: cover;
+            object-position: center;
             display: block;
         }
 
-        /* Carousel kontrol butonları için stil ayarları */
         .carousel-control-prev, .carousel-control-next {
-            width: 5%; /* Ok genişliği */
-            height: 100%; /* Ok yüksekliği */
+            width: 5%;
+            height: 100%;
             top: 0;
             bottom: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #fff; /* Ok rengi */
-            background-color: rgba(0, 0, 0, 0.5); /* Ok arka plan rengi */
-            z-index: 10; /* Diğer içeriklerin üzerinde görünmesini sağlar */
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 10;
         }
 
         .carousel-control-prev {
@@ -85,13 +84,57 @@
             right: 0;
         }
 
-        .product-cards {
+        .content-section {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            padding: 30px;
             justify-content: center;
+            padding: 30px;
+            background-color: #f8f9fa;
         }
+
+        .content-section .content-item {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content-section .content-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .content-item h3 {
+            margin-bottom: 10px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .content-item p {
+            margin-bottom: 0;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .product-slider {
+            position: relative;
+            width: 100%;
+            padding: 20px 0;
+            background-color: #f8f9fa;
+        }
+
+        .product-cards {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 10px;
+            gap: 20px;
+        }
+
         .product-card {
             background: #fff;
             border-radius: 12px;
@@ -99,35 +142,40 @@
             overflow: hidden;
             width: 300px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 0 0 auto;
         }
+
         .product-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
+
         .product-card img {
             width: 200px;
             height: 200px;
             object-fit: cover;
-            transition: opacity 0.3s ease;
-            display: block;
-            margin: 0 auto; /* Resmi yatayda ortalar */
         }
+
         .product-card:hover img {
             opacity: 0.8;
         }
+
         .product-card .content {
             padding: 20px;
         }
+
         .product-card .content h3 {
             margin: 0 0 10px;
             font-size: 22px;
             color: #333;
         }
+
         .product-card .content p {
             margin: 0;
             font-size: 16px;
             color: #666;
         }
+
         .footer {
             background: #00695c;
             color: #fff;
@@ -135,6 +183,27 @@
             padding: 20px;
             box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
         }
+
+        .scroll-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .scroll-left {
+            left: 10px;
+        }
+
+        .scroll-right {
+            right: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -142,8 +211,6 @@
     <div class="logo">
         <img src="/uploads/images/LOGO1.png" alt="Logo" style="width: 150px; height: auto;">
     </div>
-
-
     <div class="nav-links">
         <a href="#">About Us</a>
         <a href="#">Contact Us</a>
@@ -176,26 +243,52 @@
     </a>
 </div>
 
-<div class="product-cards">
-    {% for app in apps %}
-        <div class="product-card">
-            <img src="{{ asset('uploads/images/' ~ app.image) }}" alt="{{ app.name }}" class="product-image">
-            <div class="content">
-                <h3>{{ app.name }}</h3>
-                <p class="description">{{ app.description }}</p>
-                <a href="{{ path('app_app_show', {'id': app.id}) }}" class="btn btn-primary">Details</a>
-            </div>
+<div class="content-section">
+    {% for home in homes %}
+        <div class="content-item">
+            <h3>{{ home.title }}</h3>
+            <p class="description">{{ home.description }}</p>
         </div>
     {% endfor %}
 </div>
 
-
-<div class="footer">
-    <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+<div class="product-slider">
+    <button class="scroll-button scroll-left" onclick="scrollLeft()">&#8249;</button>
+    <div class="product-cards">
+        {% for app in apps %}
+            <div class="product-card">
+                <img src="{{ asset('uploads/images/' ~ app.image) }}" alt="{{ app.name }}" class="product-image">
+                <div class="content">
+                    <h3>{{ app.name }}</h3>
+                    <p class="description">{{ app.description }}</p>
+                    <a href="{{ path('app_app_show', {'id': app.id}) }}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <button class="scroll-button scroll-right" onclick="scrollRight()">&#8250;</button>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<div class="footer">
+    <p>&copy; 2024 Company Name. All rights reserved.</p>
+</div>
+
+<script>
+    function scrollLeft() {
+        const container = document.querySelector('.product-cards');
+        const scrollAmount = container.scrollWidth / 3; // Daha büyük bir değer deneyin
+        container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    }
+
+    function scrollRight() {
+        const container = document.querySelector('.product-cards');
+        const scrollAmount = container.scrollWidth / 3; // Daha büyük bir değer deneyin
+        container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
