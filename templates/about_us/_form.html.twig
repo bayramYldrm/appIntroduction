@@ -1,4 +1,92 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_row(form.mainTitle) }}
+    {{ form_row(form.mainDescription) }}
+    {{ form_row(form.sideTitle) }}
+    {{ form_row(form.sideDescription) }}
+    {{ form_row(form.vision) }}
+    {{ form_row(form.mission) }}
+    {{ form_row(form.founders) }}
+    {{ form_row(form.history) }}
+    {{ form_row(form.facebookLink) }}
+    {{ form_row(form.twitterLink) }}
+    {{ form_row(form.linkedin) }}
+    {{ form_row(form.team) }}
+    {{ form_row(form.services) }}
+
+<div>
+    {{ form_row(form.logo) }}
+    <img id="logoPreview" src="#" alt="Logo Preview" style="display: none; max-width: 100px;"/>
+</div>
+<div>
+    {{ form_row(form.adImage1) }}
+    <img id="adImage1Preview" src="#" alt="Ad Image 1 Preview" style="display: none; max-width: 100px;"/>
+</div>
+<div>
+    {{ form_row(form.adImage2) }}
+    <img id="adImage2Preview" src="#" alt="Ad Image 2 Preview" style="display: none; max-width: 100px;"/>
+</div>
+<div>
+    {{ form_row(form.adImage3) }}
+    <img id="adImage3Preview" src="#" alt="Ad Image 3 Preview" style="display: none; max-width: 100px;"/>
+</div>
+
+{{ form_row(form.phone) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.adres) }}
+
+<button type="submit" class="btn">Kaydet</button>
 {{ form_end(form) }}
+
+<script>
+    document.querySelector('input[name="about_us[logo]"]').addEventListener('change', function() {
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var img = document.getElementById('logoPreview');
+            img.src = e.target.result;
+            img.style.display = 'block';
+        };
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    });
+
+    document.querySelector('input[name="about_us[adImage1]"]').addEventListener('change', function() {
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var img = document.getElementById('adImage1Preview');
+            img.src = e.target.result;
+            img.style.display = 'block';
+        };
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    });
+
+    document.querySelector('input[name="about_us[adImage2]"]').addEventListener('change', function() {
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var img = document.getElementById('adImage2Preview');
+            img.src = e.target.result;
+            img.style.display = 'block';
+        };
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    });
+
+    document.querySelector('input[name="about_us[adImage3]"]').addEventListener('change', function() {
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var img = document.getElementById('adImage3Preview');
+            img.src = e.target.result;
+            img.style.display = 'block';
+        };
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    });
+</script>

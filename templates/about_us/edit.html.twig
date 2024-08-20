@@ -1,13 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit AboutUs{% endblock %}
+{% block title %}Hakkımızda Düzenle{% endblock %}
 
 {% block body %}
-    <h1>Edit AboutUs</h1>
+    <div class="container">
+        <h1>Hakkımızda Düzenle</h1>
 
-    {{ include('about_us/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('about_us/_form.html.twig', {'button_label': 'Güncelle'}) }}
 
-    <a href="{{ path('app_about_us_index') }}">back to list</a>
+        <div class="mt-4">
+            <a href="{{ path('app_about_us_index') }}" class="btn btn-primary">
+                <i class="bi bi-arrow-left"></i> Listeye Dön
+            </a>
+        </div>
 
-    {{ include('about_us/_delete_form.html.twig') }}
+        <div class="mt-3">
+            {{ include('about_us/_delete_form.html.twig') }}
+        </div>
+    </div>
 {% endblock %}

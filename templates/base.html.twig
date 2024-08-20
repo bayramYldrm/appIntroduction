@@ -7,6 +7,51 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
+        .section {
+            margin-bottom: 15px;
+        }
+
+        .toggle-btn {
+            width: 100%;
+            background-color: #34495e;
+            color: #ecf0f1;
+            border: none;
+            padding: 10px;
+            text-align: left;
+            font-size: 1.1em;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-btn i {
+            margin-right: 10px;
+        }
+
+        .toggle-btn:hover {
+            background-color: #3b5998;
+        }
+
+        .section-content {
+            display: none;
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .section-content a {
+            display: block;
+            padding: 5px 0;
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.2s;
+        }
+
+        .section-content a:hover {
+            color: #ffffff;
+        }
+
         body {
             display: flex;
             flex-direction: column;
@@ -151,28 +196,53 @@
 
 <!-- Sidebar -->
 <div class="sidebar">
-    <h4>Menü</h4>
+    <h4 class="sidebar-title">Menü</h4>
+
     <!-- Home Section -->
-    <div class="home-section">
-        <h4><i class="bi bi-house-door"></i> Ana Sayfa İşlemleri</h4>
-        <a href="{{ path('app_home_index') }}"><i class="bi bi-list"></i> Tüm Ana Sayfa Kayıtları</a>
-        <a href="{{ path('app_home_new') }}"><i class="bi bi-plus-circle"></i> Yeni Ana Sayfa Ekle</a>
+    <div class="section">
+        <button class="toggle-btn" onclick="toggleSection('home-section')">
+            <i class="bi bi-house-door"></i> Ana Sayfa İşlemleri
+        </button>
+        <div class="section-content" id="home-section">
+            <a href="{{ path('app_home_index') }}"><i class="bi bi-list"></i> Tüm Ana Sayfa Kayıtları</a>
+            <a href="{{ path('app_home_new') }}"><i class="bi bi-plus-circle"></i> Yeni Ana Sayfa Ekle</a>
+        </div>
     </div>
-    <br>
+
     <!-- App Section -->
-    <div class="app-section">
-        <h4><i class="bi bi-gear"></i> App İşlemleri</h4>
-        <a href="{{ path('app_app_index') }}"><i class="bi bi-list"></i> Tüm App Kayıtları</a>
-        <a href="{{ path('app_app_new') }}"><i class="bi bi-plus-circle"></i> Yeni App Ekle</a>
+    <div class="section">
+        <button class="toggle-btn" onclick="toggleSection('app-section')">
+            <i class="bi bi-gear"></i> App İşlemleri
+        </button>
+        <div class="section-content" id="app-section">
+            <a href="{{ path('app_app_index') }}"><i class="bi bi-list"></i> Tüm App Kayıtları</a>
+            <a href="{{ path('app_app_new') }}"><i class="bi bi-plus-circle"></i> Yeni App Ekle</a>
+        </div>
     </div>
-    <br>
+
     <!-- User Section -->
-    <div class="user-section">
-        <h4><i class="bi bi-person"></i> Kullanıcı İşlemleri</h4>
-        <a href="{{ path('app_user_index') }}"><i class="bi bi-list"></i> Tüm Kullanıcı Kayıtları</a>
-        <a href="{{ path('app_user_new') }}"><i class="bi bi-plus-circle"></i> Yeni Kullanıcı Ekle</a>
+    <div class="section">
+        <button class="toggle-btn" onclick="toggleSection('user-section')">
+            <i class="bi bi-person"></i> Kullanıcı İşlemleri
+        </button>
+        <div class="section-content" id="user-section">
+            <a href="{{ path('app_user_index') }}"><i class="bi bi-list"></i> Tüm Kullanıcı Kayıtları</a>
+            <a href="{{ path('app_user_new') }}"><i class="bi bi-plus-circle"></i> Yeni Kullanıcı Ekle</a>
+        </div>
+    </div>
+
+    <!-- About Us Section -->
+    <div class="section">
+        <button class="toggle-btn" onclick="toggleSection('about-us-section')">
+            <i class="bi bi-info-circle"></i> Hakkımızda İşlemleri
+        </button>
+        <div class="section-content" id="about-us-section">
+            <a href="{{ path('app_about_us_index') }}"><i class="bi bi-list"></i> Tüm Hakkımızda Kayıtları</a>
+            <a href="{{ path('app_about_us_new') }}"><i class="bi bi-plus-circle"></i> Yeni Hakkımızda Ekle</a>
+        </div>
     </div>
 </div>
+
 
 <!-- Main Content -->
 <div class="content">
@@ -204,6 +274,16 @@
             content.classList.toggle('shifted');
         });
     });
+</script>
+<script>
+    function toggleSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (section.style.display === "none" || section.style.display === "") {
+            section.style.display = "block";
+        } else {
+            section.style.display = "none";
+        }
+    }
 </script>
 </body>
 </html>

@@ -1,11 +1,78 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New AboutUs{% endblock %}
+{% block title %}Yeni Hakkımızda Bilgisi{% endblock %}
 
 {% block body %}
-    <h1>Create new AboutUs</h1>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    {{ include('about_us/_form.html.twig') }}
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 24px;
+            color: black;
+        }
 
-    <a href="{{ path('app_about_us_index') }}">back to list</a>
+        .form-container {
+            width: 70%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* Sağdan ve soldan margin ile formu sola kaydırma */
+            margin-left: 15%;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .back-button-container {
+            text-align: left; /* Sola hizala */
+            margin-top: 20px;
+            margin-left: 15%; /* Sol boşluk bırak */
+        }
+    </style>
+
+    <h1>Yeni Hakkımızda Bilgisi Oluştur</h1>
+
+    <div class="form-container">
+        {{ include('about_us/_form.html.twig') }}
+    </div>
+
+    <div class="back-button-container">
+        <a href="{{ path('app_about_us_index') }}" class="btn">Listeye geri dön</a>
+    </div>
 {% endblock %}

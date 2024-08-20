@@ -112,22 +112,28 @@
             border-color: #5a6268;
         }
         .footer {
-            background: #00695c;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #00695c; /* Dark background color */
+        }
+        .social-media-icons .btn {
+            border-radius: .25rem;
+            font-size: 1.25rem;
+        }
+        .social-media-icons .btn i {
+            transition: color 0.3s ease;
+        }
+        .social-media-icons .btn:hover i {
+            color: #007bff; /* Change color on hover */
         }
     </style>
 </head>
 <body>
 <div class="navbar">
     <div class="logo">
-        <img src="/uploads/images/Logo1.png" alt="Logo" style="width: 150px; height: auto;">
+        <img src="/uploads/images/LOGO1.png" alt="Logo" style="width: 150px; height: auto;">
     </div>
     <div class="nav-links">
-        <a href="#">About Us</a>
-        <a href="#">Contact Us</a>
+        <a href="/about">Hakkımızda</a>
+        <a href="#">İletişim</a>
     </div>
 </div>
 
@@ -156,9 +162,25 @@
     </a>
 </div>
 <br><br><br><br><br><br><br><br><br><br><br>
-<div class="footer">
-    <p>&copy; 2024 Your Company Name. All rights reserved.</p>
-</div>
+<!-- Footer Section -->
+{% for about_u in aboutuses %}
+    <footer class="footer  text-white py-3">
+        <div class="container text-center">
+            <p>&copy; 2024 {{ about_u.mainTitle }}. Tüm hakları saklıdır.</p>
+            <div class="social-media-icons">
+                <a href="{{ about_u.facebookLink }}" target="_blank" class="btn btn-outline-light btn-sm me-2">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="{{ about_u.twitterLink }}" target="_blank" class="btn btn-outline-light btn-sm me-2">
+                    <i class="bi bi-twitter"></i>
+                </a>
+                <a href="{{ about_u.linkedin }}" target="_blank" class="btn btn-outline-light btn-sm">
+                    <i class="bi bi-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+{% endfor %}
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

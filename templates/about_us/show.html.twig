@@ -1,102 +1,122 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}AboutUs{% endblock %}
+{% block title %}Hakkımızda{% endblock %}
 
 {% block body %}
-    <h1>AboutUs</h1>
+    <h1>Hakkımızda Detayları</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ about_u.id }}</td>
-            </tr>
-            <tr>
-                <th>MainTitle</th>
-                <td>{{ about_u.mainTitle }}</td>
-            </tr>
-            <tr>
-                <th>MainDescription</th>
-                <td>{{ about_u.mainDescription }}</td>
-            </tr>
-            <tr>
-                <th>SideTitle</th>
-                <td>{{ about_u.sideTitle }}</td>
-            </tr>
-            <tr>
-                <th>SideDescription</th>
-                <td>{{ about_u.sideDescription }}</td>
-            </tr>
-            <tr>
-                <th>Vision</th>
-                <td>{{ about_u.vision }}</td>
-            </tr>
-            <tr>
-                <th>Mission</th>
-                <td>{{ about_u.mission }}</td>
-            </tr>
-            <tr>
-                <th>Founders</th>
-                <td>{{ about_u.founders }}</td>
-            </tr>
-            <tr>
-                <th>History</th>
-                <td>{{ about_u.history }}</td>
-            </tr>
-            <tr>
-                <th>FacebookLink</th>
-                <td>{{ about_u.facebookLink }}</td>
-            </tr>
-            <tr>
-                <th>TwitterLink</th>
-                <td>{{ about_u.twitterLink }}</td>
-            </tr>
-            <tr>
-                <th>Linkedin</th>
-                <td>{{ about_u.linkedin }}</td>
-            </tr>
-            <tr>
-                <th>Team</th>
-                <td>{{ about_u.team }}</td>
-            </tr>
-            <tr>
-                <th>Services</th>
-                <td>{{ about_u.services }}</td>
-            </tr>
-            <tr>
-                <th>Logo</th>
-                <td>{{ about_u.logo }}</td>
-            </tr>
-            <tr>
-                <th>AdImage1</th>
-                <td>{{ about_u.adImage1 }}</td>
-            </tr>
-            <tr>
-                <th>AdImage2</th>
-                <td>{{ about_u.adImage2 }}</td>
-            </tr>
-            <tr>
-                <th>AdImage3</th>
-                <td>{{ about_u.adImage3 }}</td>
-            </tr>
-            <tr>
-                <th>Phone</th>
-                <td>{{ about_u.phone }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ about_u.email }}</td>
-            </tr>
-            <tr>
-                <th>Adres</th>
-                <td>{{ about_u.adres }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_about_us_index') }}">back to list</a>
-
-    <a href="{{ path('app_about_us_edit', {'id': about_u.id}) }}">edit</a>
-
-    {{ include('about_us/_delete_form.html.twig') }}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title">{{ about_u.mainTitle }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                {% if about_u.logo %}
+                                    <img src="{{ asset('uploads/' ~ about_u.logo) }}" class="img-fluid mb-2" alt="{{ about_u.mainTitle }}">
+                                {% else %}
+                                    <img src="{{ asset('images/default-logo.png') }}" class="img-fluid mb-2" alt="Varsayılan Logo">
+                                {% endif %}
+                                {% if about_u.adImage1 %}
+                                    <img src="{{ asset('uploads/' ~ about_u.adImage1) }}" class="img-fluid mb-2" alt="Reklam Görseli 1">
+                                {% endif %}
+                                {% if about_u.adImage2 %}
+                                    <img src="{{ asset('uploads/' ~ about_u.adImage2) }}" class="img-fluid mb-2" alt="Reklam Görseli 2">
+                                {% endif %}
+                                {% if about_u.adImage3 %}
+                                    <img src="{{ asset('uploads/' ~ about_u.adImage3) }}" class="img-fluid mb-2" alt="Reklam Görseli 3">
+                                {% endif %}
+                            </div>
+                            <div class="col-md-8">
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <th>Id</th>
+                                        <td>{{ about_u.id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Ana Başlık</th>
+                                        <td>{{ about_u.mainTitle }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Ana Açıklama</th>
+                                        <td>{{ about_u.mainDescription }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Yan Başlık</th>
+                                        <td>{{ about_u.sideTitle }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Yan Açıklama</th>
+                                        <td>{{ about_u.sideDescription }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Vizyon</th>
+                                        <td>{{ about_u.vision }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Misyon</th>
+                                        <td>{{ about_u.mission }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Kurucular</th>
+                                        <td>{{ about_u.founders }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Tarihçe</th>
+                                        <td>{{ about_u.history }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Facebook Bağlantısı</th>
+                                        <td><a href="{{ about_u.facebookLink }}" target="_blank">{{ about_u.facebookLink }}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Twitter Bağlantısı</th>
+                                        <td><a href="{{ about_u.twitterLink }}" target="_blank">{{ about_u.twitterLink }}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <th>LinkedIn</th>
+                                        <td><a href="{{ about_u.linkedin }}" target="_blank">{{ about_u.linkedin }}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Takım</th>
+                                        <td>{{ about_u.team }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Hizmetler</th>
+                                        <td>{{ about_u.services }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Telefon</th>
+                                        <td>{{ about_u.phone }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>E-posta</th>
+                                        <td><a href="mailto:{{ about_u.email }}">{{ about_u.email }}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Adres</th>
+                                        <td>{{ about_u.adres }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-end">
+                        <a href="{{ path('app_about_us_index') }}" class="btn btn-primary">
+                            <i class="bi bi-arrow-left"></i> Listeye Dön
+                        </a>
+                        <a href="{{ path('app_about_us_edit', {'id': about_u.id}) }}" class="btn btn-secondary">
+                            <i class="bi bi-pencil"></i> Düzenle
+                        </a>
+                        {{ include('about_us/_delete_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
