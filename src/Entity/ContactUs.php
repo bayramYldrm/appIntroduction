@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ContactUsRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class ContactUs
 {
     #[ORM\Id]
@@ -28,6 +29,14 @@ class ContactUs
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdat = null;
+
+    #[ORM\PrePersist]
+    public function setCreatedatValue(): void
+    {
+        if ($this->createdat === null) {
+            $this->createdat = new \DateTime('now', new \DateTimeZone('Europe/Istanbul'));
+        }
+    }
 
     public function getId(): ?int
     {

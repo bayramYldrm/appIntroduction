@@ -12,14 +12,18 @@ class ContactUsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstname')
-            ->add('lastname')
-            ->add('email')
-            ->add('city')
-            ->add('createdat', null, [
-                'widget' => 'single_text',
+            ->add('firstname', null, [
+                'label' => 'Adınız',
             ])
-        ;
+            ->add('lastname', null, [
+                'label' => 'Soyadınız',
+            ])
+            ->add('email', null, [
+                'label' => 'Email Adresiniz',
+            ])
+            ->add('city', null, [
+                'label' => 'Şehir',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
