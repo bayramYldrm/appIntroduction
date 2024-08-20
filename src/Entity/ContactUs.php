@@ -30,6 +30,9 @@ class ContactUs
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdat = null;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $message = null;
+
     #[ORM\PrePersist]
     public function setCreatedatValue(): void
     {
@@ -99,6 +102,18 @@ class ContactUs
     public function setCreatedat(\DateTimeInterface $createdat): static
     {
         $this->createdat = $createdat;
+
+        return $this;
+    }
+
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
+
+    public function setMessage(string $message): static
+    {
+        $this->message = $message;
 
         return $this;
     }

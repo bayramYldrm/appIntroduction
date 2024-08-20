@@ -1,13 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit ContactUs{% endblock %}
+{% block title %}İletişim Düzenle{% endblock %}
 
 {% block body %}
-    <h1>Edit ContactUs</h1>
+    <div class="container mt-4">
 
-    {{ include('contact_us/_form.html.twig', {'button_label': 'Update'}) }}
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                {{ include('contact_us/_form.html.twig', {'button_label': 'Update'}) }}
+            </div>
+        </div>
 
-    <a href="{{ path('app_contact_us_index') }}">back to list</a>
+        <div class="d-flex justify-content-between mt-3">
+            <a href="{{ path('app_contact_us_index') }}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back to list
+            </a>
 
-    {{ include('contact_us/_delete_form.html.twig') }}
+            {{ include('contact_us/_delete_form.html.twig') }}
+        </div>
+    </div>
 {% endblock %}

@@ -21,6 +21,9 @@ class ContactUsType extends AbstractType
             ->add('email', null, [
                 'label' => 'Email Adresiniz',
             ])
+            ->add('message', null,[
+                'label' => 'Mesajınız',
+            ])
             ->add('city', null, [
                 'label' => 'Şehir',
             ]);

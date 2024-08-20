@@ -12,6 +12,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;
             line-height: 1.6;
+            background-color: #f8f9fa;
         }
         .navbar {
             background: #004d40;
@@ -40,87 +41,35 @@
             color: #f1c40f;
         }
 
-        .content-section {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            padding: 30px;
-            background-color: #f8f9fa;
-        }
-        .content-section .content-item {
+        .card-custom {
+            margin: 2rem auto;
+            padding: 2rem;
             background: #fff;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
-            width: 300px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 600px;
         }
-        .content-section .content-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-        .content-item h3 {
-            margin-bottom: 10px;
-            font-size: 24px;
-            color: #333;
-        }
-        .content-item p {
-            margin-bottom: 0;
-            font-size: 16px;
-            color: #666;
-        }
-
-        .main-title {
-            text-align: center;
-            margin: 2rem 0;
-            font-size: 32px;
-            color: #333;
-        }
-        .card-img-top {
-            height: 200px;
-            object-fit: cover;
-        }
-        .card-deck .card {
-            margin-bottom: 1.5rem;
-        }
-
-        .content-section {
-            padding: 60px 0;
-            background-color: #f8f9fa;
-        }
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 36px;
-            color: #333;
-            font-weight: bold;
-        }
-        .content-item {
-            margin-bottom: 40px;
-        }
-        .content-item h4 {
+        .card-custom h1 {
             font-size: 28px;
-            color: #007bff;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+            color: #004d40;
+            text-align: center;
         }
-        .content-item p {
-            font-size: 18px;
-            color: #555;
+        .card-custom .btn-primary {
+            background-color: #004d40;
+            border: none;
         }
-        .content-item a {
-            color: #007bff;
-            text-decoration: none;
+        .card-custom .btn-primary:hover {
+            background-color: #00332a;
         }
-        .content-item a:hover {
-            text-decoration: underline;
-        }
-
         .footer {
-            background-color: #00695c; /* Dark background color */
+            background-color: #00695c;
+            padding: 20px 0;
+            text-align: center;
+            color: #fff;
+        }
+        .footer p {
+            margin: 0;
         }
         .social-media-icons .btn {
             border-radius: .25rem;
@@ -130,7 +79,7 @@
             transition: color 0.3s ease;
         }
         .social-media-icons .btn:hover i {
-            color: #007bff; /* Change color on hover */
+            color: #007bff;
         }
     </style>
 </head>
@@ -145,12 +94,44 @@
     </div>
 </div>
 
+<div class="container">
+    <div class="card card-custom">
+        <h1>Yeni ContactUs Oluştur</h1>
 
-
+        {% block body %}
+            {{ form_start(form) }}
+            <div class="form-group">
+                {{ form_label(form.firstname, 'Adınız') }}
+                {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.lastname, 'Soyadınız') }}
+                {{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.email, 'E-posta') }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.city, 'Şehir') }}
+                {{ form_widget(form.city, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.message, 'Mesajınız') }}
+                {{ form_widget(form.message, {'attr': {'class': 'form-control', 'rows': 4}}) }}
+            </div>
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+                <a href="{{ path('app_default') }}" class="btn btn-secondary">Geri Dön</a>
+            </div>
+            {{ form_end(form) }}
+        {% endblock %}
+    </div>
+</div>
 
 <!-- Footer Section -->
 {% for about_u in aboutuses %}
-    <footer class="footer  text-white py-3">
+    <footer class="footer">
         <div class="container text-center">
             <p>&copy; 2024 {{ about_u.mainTitle }}. Tüm hakları saklıdır.</p>
             <div class="social-media-icons">

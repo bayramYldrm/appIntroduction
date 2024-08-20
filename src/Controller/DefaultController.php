@@ -2,10 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\ContactUs;
+use App\Form\ContactUsType;
 use App\Repository\AboutUsRepository;
 use App\Repository\AppRepository;
 use App\Repository\HomeRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 #[Route('/')]
@@ -45,6 +49,28 @@ class DefaultController extends AbstractController
     {
         return $this->render('default/about_Us.html.twig', [
             'aboutuses' => $aboutUsRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/contact', name: 'app_contact_us_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager, AboutUsRepository $aboutUs): Response
+    {
+        $aboutUs = $aboutUs->findAll();
+        $contactU = new ContactUs();
+        $form = $this->createForm(ContactUsType::class, $contactU);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($contactU);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_default', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('default/contact_us.html.twig', [
+            'contact_u' => $contactU,
+            'form' => $form,
+            'aboutuses' => $aboutUs,
         ]);
     }
 }
