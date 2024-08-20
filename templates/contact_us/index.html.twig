@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ContactUs index{% endblock %}
+
+{% block body %}
+    <h1>ContactUs index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Createdat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contact_u in contactuses %}
+            <tr>
+                <td>{{ contact_u.id }}</td>
+                <td>{{ contact_u.firstname }}</td>
+                <td>{{ contact_u.lastname }}</td>
+                <td>{{ contact_u.email }}</td>
+                <td>{{ contact_u.city }}</td>
+                <td>{{ contact_u.createdat ? contact_u.createdat|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_contact_us_show', {'id': contact_u.id}) }}">show</a>
+                    <a href="{{ path('app_contact_us_edit', {'id': contact_u.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_contact_us_new') }}">Create new</a>
+{% endblock %}
