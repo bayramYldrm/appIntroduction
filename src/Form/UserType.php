@@ -21,7 +21,6 @@ class UserType extends AbstractType
             ->add('password', PasswordType::class)
         ;
     }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
